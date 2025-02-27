@@ -11,11 +11,15 @@ body {
     width: 100%;
 }
 
+
+
+/* =========== sidebar styling =========== */
 .sidebar {
-    width: 200px;
+    width: 25%;
     background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    padding: 1rem;
+    overflow-y: auto; 
 }
 
 .main-content {
@@ -23,22 +27,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 2rem;
 }
 
 .card {
-    width: 80%;
+    width: 100%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 2rem;
     background-color: #fff;
 }
 
 .list-group-item {
     cursor: pointer;
     transition: background-color 0.2s;
-    padding: 10px;
+    padding:1rem;
     border: 1px solid #ddd;
-    margin-bottom: 5px;
+    margin-bottom:1rem;
 }
 
 .list-group-item:hover {
@@ -50,6 +54,3 @@ body {
     color: #fff;
     border-color: #0d6efd;
 }
-
-
-/* write html or css part according to this like I have the side button which has the all index_name and according to the name they change their data */
