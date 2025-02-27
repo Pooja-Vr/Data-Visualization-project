@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('Data/dump.csv')
         .then(response => response.text())
         .then(csvData => {
-            console.log('CSV Data fetched:', csvData); // Debugging line
+            console.log('CSV Data fetched:', csvData); 
             const parsedData = Papa.parse(csvData, { header: true }).data;
-            console.log('Parsed Data:', parsedData); // Debugging line 
+            console.log('Parsed Data:', parsedData); 
             
 
             // ============== add some filters ==============
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .filter(name => !name.includes('50') && !name.includes('100') && !name.includes('200'));
             console.log('Filtered Index Names:', indexNames); 
             const listGroup = document.querySelector('.list-group');
-            listGroup.innerHTML = ''; // Clear existing list items
+            listGroup.innerHTML = ''; // ========== Clear existing list items ===========
 
             indexNames.forEach((indexName, idx) => {
                 const listItem = document.createElement('li');
@@ -41,12 +41,12 @@ function fetchData(indexName) {
     fetch('Data/dump.csv')
         .then(response => response.text())
         .then(csvData => {
-            console.log('CSV Data fetched for fetchData:', csvData); // Debugging line
+            console.log('CSV Data fetched for fetchData:', csvData);
             const parsedData = Papa.parse(csvData, { header: true }).data;
             const filteredData = parsedData.filter(row => row.index_name.replace('Nifty', '').trim() === indexName);
-            console.log('Filtered Data for', indexName, ':', filteredData); // Debugging line
+            console.log('Filtered Data for', indexName, ':', filteredData); 
             
-            // Group data by year
+            // =========== Grouping data by year ==============
             const yearlyData = filteredData.reduce((acc, row) => {
                 const year = new Date(row.index_date).getFullYear();
                 if (!acc[year]) acc[year] = [];
@@ -54,7 +54,7 @@ function fetchData(indexName) {
                 return acc;
             }, {});
 
-            // Prepare data for chart
+            //============= Preparing the data for line chart =============
             const labels = Object.keys(yearlyData);
             const values = labels.map(year => {
                 const yearData = yearlyData[year];
@@ -66,10 +66,10 @@ function fetchData(indexName) {
 }
 
 function updateStockChart(labels, values) {
-    console.log('Updating chart with labels:', labels, 'and values:', values); // Debugging line
+    console.log('Updating chart with labels:', labels, 'and values:', values);
     const ctx = document.getElementById('stock-chart').getContext('2d');
     new Chart(ctx, {
-        type: 'line', // Change to the chart type you need
+        type: 'line', 
         data: {
             labels: labels,
             datasets: [{
