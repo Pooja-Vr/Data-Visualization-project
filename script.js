@@ -1,13 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // ===== fetch the dump.csv file form Data folder =========
     fetch('Data/dump.csv')
         .then(response => response.text())
         .then(csvData => {
             console.log('CSV Data fetched:', csvData); // Debugging line
             const parsedData = Papa.parse(csvData, { header: true }).data;
-            console.log('Parsed Data:', parsedData); // Debugging line
+            console.log('Parsed Data:', parsedData); // Debugging line 
+            
+
+            // ============== add some filters ==============
             const indexNames = [...new Set(parsedData.map(row => row.index_name.replace('Nifty', '').trim()))]
                 .filter(name => !name.includes('50') && !name.includes('100') && !name.includes('200'));
-            console.log('Filtered Index Names:', indexNames); // Debugging line
+            console.log('Filtered Index Names:', indexNames); 
             const listGroup = document.querySelector('.list-group');
             listGroup.innerHTML = ''; // Clear existing list items
 
